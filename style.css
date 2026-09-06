@@ -1,0 +1,57 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background: #080808;
+    color: white;
+
+    font-family: Arial, sans-serif;
+}
+
+.home {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 20px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-decoration: none;
+    color: white;
+
+    border: 2px solid white;
+
+    transition: 0.15s ease;
+}
+
+.godhead {
+    width: 500px;
+    height: 220px;
+
+    font-size: 64px;
+    font-weight: bold;
+}
+
+.music {
+    width: 300px;
+    height: 80px;
+
+    font-size: 28px;
+}
+
+.button:hover {
+    background: white;
+    color: black;
+}
