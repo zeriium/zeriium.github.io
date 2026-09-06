@@ -1,0 +1,13 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "zeriium",
+    "description": "",
+    "home_page_url": "https://zeriium.com",
+    "feed_url": "https://zeriium.com/feed.json",
+    "user_comment": "",
+    "author": {
+        "name": "zeriium"
+    },
+    "items": [
+    ]
+}
