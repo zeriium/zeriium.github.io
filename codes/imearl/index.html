@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMEARL</title>
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            overflow: hidden;
+        }
+
+        .earl {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-user-drag: none;
+            cursor: pointer;
+        }
+
+        .cheer {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-user-drag: none;
+            pointer-events: none;
+        }
+		
+		.success-text {
+			position: fixed;
+			top: 25px;
+			left: 0;
+			width: 100%;
+			text-align: center;
+
+			color: green;
+			font-family: sans-serif;
+			font-size: 48px;
+			font-weight: bold;
+
+			user-select: none;
+			-webkit-user-select: none;
+			pointer-events: none;
+		}
+    </style>
+</head>
+
+<body>
+
+    <img
+        id="earl"
+        class="earl"
+        src="../../assets/earl.png"
+        alt="Earl"
+    >
+
+    <img
+        id="cheer"
+        class="cheer"
+        src="../../assets/cheer.gif"
+        alt=""
+    >
+
+    <audio
+        id="sound"
+        src="../../assets/earlfound.ogg"
+        preload="auto"
+    ></audio>
+
+    <script>
+        const earl = document.getElementById("earl");
+        const cheer = document.getElementById("cheer");
+        const sound = document.getElementById("sound");
+
+        let found = false;
+
+        earl.addEventListener("click", () => {
+            if (found) return;
+
+            found = true;
+
+            earl.src = "../../assets/earlfound.gif";
+            earl.style.cursor = "default";
+            earl.style.pointerEvents = "none";
+
+            sound.play().catch(() => {});
+        });
+
+		sound.addEventListener("ended", () => {
+			earl.src = "../../assets/earl.png";
+
+			cheer.style.display = "block";
+
+			const successText = document.createElement("div");
+			successText.textContent = "YOU FOUND HIM";
+			successText.className = "success-text";
+			document.body.appendChild(successText);
+
+			const success = new Audio("../../assets/success.ogg");
+			success.play().catch(() => {});
+		});
+    </script>
+</body>
+</html>

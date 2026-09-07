@@ -14,3 +14,35 @@ button.addEventListener("click", () => {
 });
 
 updateTheme();
+
+const codeInput = document.getElementById("code-input");
+
+const codes = {
+    MEMORE: "codes/memore/",
+    IMEARL: "codes/imearl/"
+};
+
+const endingSound = new Audio("assets/ending.ogg");
+
+if (codeInput) {
+    codeInput.addEventListener("input", () => {
+        codeInput.value = codeInput.value
+            .replace(/[^a-zA-Z]/g, "")
+            .toUpperCase();
+    });
+
+    codeInput.addEventListener("keydown", event => {
+        if (event.key !== "Enter") return;
+
+        const code = codeInput.value;
+
+        if (codes[code]) {
+            window.location.href = codes[code];
+            return;
+        }
+
+        if (code === "THEEND") {
+            endingSound.play();
+        }
+    });
+}

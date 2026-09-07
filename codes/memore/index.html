@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEMORE</title>
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            overflow: hidden;
+        }
+
+        .been {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            width: 300px;
+            height: auto;
+            display: block;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-user-drag: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img
+        id="been"
+        class="been"
+        src="../../assets/been.png"
+        alt=""
+    >
+
+    <audio
+        id="memoir"
+        src="../../assets/memoir.ogg"
+        preload="auto"
+        loop
+    ></audio>
+
+    <script>
+        const image = document.getElementById("been");
+        const audio = document.getElementById("memoir");
+
+        const buildupDuration = 8000;
+
+        const startGain = 0.90;
+        const endGain = 1.00;
+
+        const bassHitDuration = 450;
+
+        let audioContext;
+        let source;
+        let gainNode;
+        let bassFilter;
+
+        function setupAudio() {
+            if (audioContext) return;
+
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+            source = audioContext.createMediaElementSource(audio);
+
+            gainNode = audioContext.createGain();
+            bassFilter = audioContext.createBiquadFilter();
+
+            bassFilter.type = "lowshelf";
+            bassFilter.frequency.value = 120;
+            bassFilter.gain.value = 0;
+
+            gainNode.gain.value = startGain;
+
+            source
+                .connect(bassFilter)
+                .connect(gainNode)
+                .connect(audioContext.destination);
+        }
+
+        function startAudio() {
+            setupAudio();
+
+            if (audioContext.state === "suspended") {
+                audioContext.resume();
+            }
+
+            audio.play().catch(() => {});
+        }
+
+        startAudio();
+
+        document.addEventListener("click", startAudio, { once: true });
+        document.addEventListener("keydown", startAudio, { once: true });
+
+        const startTime = performance.now();
+
+        function buildup(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / buildupDuration, 1);
+
+            if (gainNode) {
+                gainNode.gain.value =
+                    startGain +
+                    (endGain - startGain) * progress;
+            }
+
+            if (progress < 1) {
+                requestAnimationFrame(buildup);
+            }
+        }
+
+        requestAnimationFrame(buildup);
+
+        setTimeout(() => {
+
+            setupAudio();
+
+            if (audioContext.state === "suspended") {
+                audioContext.resume();
+            }
+
+            image.src = "../../assets/beengo.gif";
+
+            gainNode.gain.setValueAtTime(1.0, audioContext.currentTime);
+
+            const now = audioContext.currentTime;
+
+            bassFilter.gain.cancelScheduledValues(now);
+
+            bassFilter.gain.setValueAtTime(0, now);
+
+            bassFilter.gain.linearRampToValueAtTime(
+                18,
+                now + 0.05
+            );
+
+            bassFilter.gain.linearRampToValueAtTime(
+                0,
+                now + bassHitDuration / 1000
+            );
+
+            setTimeout(() => {
+
+                document.documentElement.style.background = "white";
+                document.body.style.background = "white";
+
+                image.style.display = "none";
+
+                gainNode.gain.setValueAtTime(
+                    1.0,
+                    audioContext.currentTime
+                );
+
+                setTimeout(() => {
+                    window.location.href = "../../";
+                }, 1000);
+
+            }, 2500);
+
+        }, buildupDuration);
+    </script>
+
+</body>
+</html>

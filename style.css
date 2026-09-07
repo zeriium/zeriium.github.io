@@ -100,3 +100,34 @@ footer {
     user-select: none;
     -webkit-user-select: none;
 }
+
+.code-entry {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+
+    transform: translateX(-50%);
+}
+
+.code-entry input {
+    width: 70px;
+
+    padding: 3px 0;
+
+    border: none;
+    border-bottom: 1px solid currentColor;
+
+    background: none;
+    color: inherit;
+
+    font-family: monospace;
+    font-size: 11px;
+
+    text-align: center;
+    text-transform: uppercase;
+
+    outline: none;
+
+    user-select: text;
+    -webkit-user-select: text;
+}
