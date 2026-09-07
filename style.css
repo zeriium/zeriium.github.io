@@ -1,57 +1,26 @@
-* {
-    box-sizing: border-box;
-}
-
 body {
     margin: 0;
-    min-height: 100vh;
-
-    background: #080808;
-    color: white;
-
-    font-family: Arial, sans-serif;
+    background: white;
 }
 
-.home {
-    min-height: 100vh;
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+main {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-
-    gap: 20px;
+    gap: 30px;
 }
 
-.button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    text-decoration: none;
-    color: white;
-
-    border: 2px solid white;
-
-    transition: 0.15s ease;
-}
-
-.godhead {
-    width: 500px;
-    height: 220px;
-
-    font-size: 64px;
-    font-weight: bold;
-}
-
-.music {
-    width: 300px;
-    height: 80px;
-
-    font-size: 28px;
-}
-
-.button:hover {
-    background: white;
-    color: black;
+main img {
+    display: block;
 }
