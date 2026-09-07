@@ -88,3 +88,15 @@ img {
 
     transition: filter 0.2s ease;
 }
+
+footer {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+
+    font-size: 11px;
+    opacity: 0.4;
+
+    user-select: none;
+    -webkit-user-select: none;
+}
