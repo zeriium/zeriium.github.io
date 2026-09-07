@@ -3,17 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zeriium</title>
+    <title>zeriium</title>
+
+    <script>
+        if (localStorage.getItem("inverted") !== "false") {
+            document.documentElement.classList.add("dark");
+        }
+    </script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Top-left logo -->
-    <img src="zeriium.gif" class="logo" alt="Zeriium">
+    <img src="zeriium.gif" class="logo" alt="zeriium">
+	
+	<div class="socials">
+		<a href="https://x.com/zeriium" target="_blank" rel="noopener">
+			<img src="twit.gif" alt="Twitter">
+		</a>
 
-    <!-- Center buttons -->
-    <main>
+		<a href="https://github.com/zeriium" target="_blank" rel="noopener">
+			<img src="gith.gif" alt="GitHub">
+		</a>
+
+		<a href="https://zeriium.newgrounds.com/" target="_blank" rel="noopener">
+			<img src="newg.gif" alt="Newgrounds">
+		</a>
+	</div>
+
+    <main class="home-buttons">
         <a href="godhead/">
             <img src="godhead.gif" alt="Godhead">
         </a>
@@ -23,5 +42,10 @@
         </a>
     </main>
 
+    <button id="theme-toggle" aria-label="Toggle colors">
+        invert
+    </button>
+
+    <script src="script.js"></script>
 </body>
 </html>

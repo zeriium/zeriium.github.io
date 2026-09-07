@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: black;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .back {
+            position: absolute;
+            top: 12px;
+            left: 15px;
+
+            color: white;
+            text-decoration: none;
+
+            font-size: 16px;
+            opacity: 0.7;
+        }
+
+        .music {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            cursor: pointer;
+        }
+		
+		.secret {
+			position: fixed;
+			top: 50%;
+			right: 15px;
+
+			transform: translateY(-50%);
+
+			width: 10px;
+
+			color: #000;
+			opacity: 1;
+
+			font-family: monospace;
+			font-size: 10px;
+			line-height: 10px;
+
+			word-break: break-all;
+			user-select: text;
+		}
+    </style>
+</head>
+
+<div class="secret">bloodboue28</div>
+
+<body>
+
+    <a href="../" class="back">←</a>
+
+    <img
+        src="../cordyceps.png"
+        class="music"
+        id="music-image"
+        alt="Cordyceps"
+    >
+
+    <audio id="song" src="../earwyrm4.ogg" loop></audio>
+
+    <script>
+        const image = document.getElementById("music-image");
+        const song = document.getElementById("song");
+
+		image.addEventListener("click", () => {
+			song.play();
+
+			image.style.cursor = "default";
+			image.style.pointerEvents = "none";
+		});
+    </script>
+
+</body>
+</html>

@@ -1,15 +1,35 @@
 body {
     margin: 0;
     background: white;
+    color: black;
+    min-height: 100vh;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+html.dark,
+html.dark body {
+    background: black;
+    color: white;
+}
+
+html.dark img {
+    filter: invert(1);
+}
+
+* {
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .logo {
     position: absolute;
     top: 20px;
     left: 20px;
+
+    transition: filter 0.2s ease;
 }
 
-main {
+.home-buttons {
     position: absolute;
     top: 30%;
     left: 50%;
@@ -18,9 +38,53 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 50px;
 }
 
-main img {
+.home-buttons img {
     display: block;
+    transform: scale(1.25);
+
+    transition: filter 0.2s ease;
+}
+
+.home-buttons a:nth-child(2) {
+    transform: translateY(25px);
+}
+
+#theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    border: none;
+    background: none;
+    color: inherit;
+
+    font-family: inherit;
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+img {
+    -webkit-user-drag: none;
+}
+
+.socials {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.socials img {
+    display: block;
+    width: 32px;
+    height: 32px;
+
+    transition: filter 0.2s ease;
 }
